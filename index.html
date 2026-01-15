@@ -22,6 +22,8 @@
             --verde: #4CAF50;
             --rojo: #F44336;
             --dorado: #FFD700;
+            --naranja: #FF9800;
+            --purpura: #9C27B0;
         }
 
         body {
@@ -428,7 +430,7 @@
             overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             gap: 8px;
         }
 
@@ -474,6 +476,42 @@
         .turn-team2 {
             background: linear-gradient(45deg, var(--azul-marino), #4FC3F7);
             color: white;
+        }
+
+        /* Temporizador */
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timer {
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--purpura), var(--naranja));
+            color: white;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .timer.warning {
+            background: linear-gradient(45deg, var(--naranja), var(--rojo));
+            animation: pulse 1s infinite;
+        }
+
+        .timer.critical {
+            background: linear-gradient(45deg, var(--rojo), #8B0000);
+            animation: pulse 0.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         /* Question card compacta */
@@ -577,6 +615,12 @@
             border-color: var(--rojo);
         }
 
+        .option.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .option-number {
             background: linear-gradient(45deg, var(--azul-marino), var(--vino-tinto));
             color: var(--blanco);
@@ -612,6 +656,12 @@
             background: linear-gradient(135deg, #f8d7da, #f5c6cb);
             border: 2px solid var(--rojo);
             color: #721c24;
+        }
+
+        .feedback.timeout {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid var(--naranja);
+            color: #856404;
         }
 
         .feedback-header {
@@ -998,6 +1048,10 @@
                 <div class="turn-controls">
                     <div class="current-turn">TURNO ACTUAL:</div>
                     <div class="turn-indicator turn-team1" id="turnIndicator">EQUIPO ROJO</div>
+                    <div class="timer-container">
+                        <span>Tiempo:</span>
+                        <div class="timer" id="timer">10s</div>
+                    </div>
                 </div>
 
                 <div class="question-card">
@@ -1061,75 +1115,209 @@
         class SabesVsSabesGame {
             constructor() {
                 this.teams = {
-                    team1: { name: "EQUIPO ROJO", score: 0 },
-                    team2: { name: "EQUIPO AZUL", score: 0 }
+                    team1: { name: "EQUIPO ROJO", score: 0, questionsAssigned: [] },
+                    team2: { name: "EQUIPO AZUL", score: 0, questionsAssigned: [] }
                 };
                 
                 this.currentTurn = 'team1';
-                this.currentQuestion = 0;
-                this.totalQuestions = 10;
+                this.currentQuestionIndex = 0;
+                this.totalQuestions = 30;
+                this.timeLimit = 10; // segundos
+                this.timer = null;
+                this.timeLeft = this.timeLimit;
+                this.questionsAnswered = 0;
+                this.questionsPerTeam = 5;
                 
-                // 10 preguntas de Negocios Internacionales
+                // 30 preguntas de conocimiento general
                 this.questions = [
+                    // Historia (6 preguntas)
                     {
-                        question: "¿Qué significa 'FOB' en comercio?",
-                        options: ["Free On Board", "Freight On Board", "Free Of Bond", "Foreign Office Bill"],
+                        question: "¿Quién descubrió América en 1492?",
+                        options: ["Cristóbal Colón", "Américo Vespucio", "Fernando de Magallanes", "Hernán Cortés"],
                         correct: 0,
-                        explanation: "FOB = Free On Board (Libre a Bordo)"
+                        explanation: "Cristóbal Colón descubrió América el 12 de octubre de 1492"
                     },
                     {
-                        question: "¿Qué es un 'arancel'?",
-                        options: ["Subsidio", "Impuesto a importaciones", "Acuerdo comercial", "Barrera técnica"],
+                        question: "¿En qué año terminó la Segunda Guerra Mundial?",
+                        options: ["1943", "1945", "1947", "1950"],
                         correct: 1,
-                        explanation: "Impuesto sobre bienes importados"
+                        explanation: "La Segunda Guerra Mundial terminó en 1945"
                     },
                     {
-                        question: "La 'balanza comercial' mide:",
-                        options: ["Tipo de cambio", "Exportaciones - Importaciones", "Reservas", "Inflación"],
-                        correct: 1,
-                        explanation: "Diferencia entre exportaciones e importaciones"
-                    },
-                    {
-                        question: "¿Qué organización regula el comercio?",
-                        options: ["ONU", "FMI", "OMC", "UNESCO"],
+                        question: "¿Quién fue el primer presidente de Estados Unidos?",
+                        options: ["Thomas Jefferson", "Abraham Lincoln", "George Washington", "John Adams"],
                         correct: 2,
-                        explanation: "OMC = Organización Mundial del Comercio"
+                        explanation: "George Washington fue el primer presidente de EE.UU. (1789-1797)"
                     },
                     {
-                        question: "¿Qué es 'exportación'?",
-                        options: ["Comprar extranjero", "Vender a otros países", "Producción local", "Importar materia prima"],
-                        correct: 1,
-                        explanation: "Vender productos a otros países"
-                    },
-                    {
-                        question: "¿Qué es 'dumping'?",
-                        options: ["Vender bajo costo", "Comprar en cantidad", "Exportar prohibido", "Importar sin pagar"],
-                        correct: 0,
-                        explanation: "Vender por debajo del costo"
-                    },
-                    {
-                        question: "¿Qué significa 'IVA'?",
-                        options: ["Impuesto al Valor Agregado", "Importe Venta Autorizada", "Impuesto Ventas Anual", "Importación Valor"],
-                        correct: 0,
-                        explanation: "Impuesto al Valor Agregado"
-                    },
-                    {
-                        question: "¿Qué es 'carta de crédito'?",
-                        options: ["Contrato", "Documento embarque", "Garantía bancaria", "Certificado origen"],
+                        question: "¿Qué imperio construyó la Gran Muralla China?",
+                        options: ["Imperio Mongol", "Dinastía Ming", "Dinastía Qin", "Dinastía Han"],
                         correct: 2,
-                        explanation: "Garantía bancaria de pago"
+                        explanation: "La Gran Muralla comenzó a construirse durante la dinastía Qin"
                     },
                     {
-                        question: "¿Qué son 'INCOTERMS'?",
-                        options: ["Impuestos", "Términos comerciales", "Contratos", "Regulaciones"],
+                        question: "¿Quién pintó la Mona Lisa?",
+                        options: ["Miguel Ángel", "Leonardo da Vinci", "Rafael", "Donatello"],
                         correct: 1,
-                        explanation: "Términos comerciales internacionales"
+                        explanation: "La Mona Lisa fue pintada por Leonardo da Vinci"
                     },
                     {
-                        question: "¿Qué es 'trato nacional'?",
-                        options: ["Igualdad productos", "Preferencia nacional", "Exclusividad", "Subsidios"],
+                        question: "¿Qué civilización construyó las pirámides de Giza?",
+                        options: ["Romanos", "Griegos", "Egipcios", "Mayas"],
+                        correct: 2,
+                        explanation: "Las pirámides de Giza fueron construidas por los antiguos egipcios"
+                    },
+                    
+                    // Geografía (6 preguntas)
+                    {
+                        question: "¿Cuál es el río más largo del mundo?",
+                        options: ["Amazonas", "Nilo", "Yangtsé", "Misisipi"],
                         correct: 0,
-                        explanation: "Tratar igual productos nacionales y extranjeros"
+                        explanation: "El río Amazonas es el más largo del mundo (aproximadamente 7,062 km)"
+                    },
+                    {
+                        question: "¿Cuál es la capital de Australia?",
+                        options: ["Sídney", "Melbourne", "Canberra", "Brisbane"],
+                        correct: 2,
+                        explanation: "La capital de Australia es Canberra"
+                    },
+                    {
+                        question: "¿Qué océano es el más grande?",
+                        options: ["Atlántico", "Índico", "Pacífico", "Ártico"],
+                        correct: 2,
+                        explanation: "El océano Pacífico es el más grande del mundo"
+                    },
+                    {
+                        question: "¿En qué continente se encuentra Egipto?",
+                        options: ["Asia", "África", "Europa", "Oceanía"],
+                        correct: 1,
+                        explanation: "Egipto se encuentra en África, aunque tiene territorio en Asia"
+                    },
+                    {
+                        question: "¿Cuál es el país más grande del mundo por territorio?",
+                        options: ["China", "Estados Unidos", "Rusia", "Canadá"],
+                        correct: 2,
+                        explanation: "Rusia es el país más grande del mundo por territorio"
+                    },
+                    {
+                        question: "¿Qué montaña es la más alta del mundo?",
+                        options: ["K2", "Everest", "Kilimanjaro", "Aconcagua"],
+                        correct: 1,
+                        explanation: "El Monte Everest es la montaña más alta del mundo (8,848 m)"
+                    },
+                    
+                    // Ciencia (6 preguntas)
+                    {
+                        question: "¿Cuál es el elemento químico más abundante en el universo?",
+                        options: ["Oxígeno", "Carbono", "Hidrógeno", "Hierro"],
+                        correct: 2,
+                        explanation: "El hidrógeno es el elemento más abundante en el universo"
+                    },
+                    {
+                        question: "¿Quién formuló la teoría de la relatividad?",
+                        options: ["Isaac Newton", "Albert Einstein", "Stephen Hawking", "Galileo Galilei"],
+                        correct: 1,
+                        explanation: "Albert Einstein formuló la teoría de la relatividad"
+                    },
+                    {
+                        question: "¿Qué planeta es conocido como el 'planeta rojo'?",
+                        options: ["Venus", "Júpiter", "Marte", "Saturno"],
+                        correct: 2,
+                        explanation: "Marte es conocido como el 'planeta rojo'"
+                    },
+                    {
+                        question: "¿Cuál es el hueso más largo del cuerpo humano?",
+                        options: ["Fémur", "Tibia", "Húmero", "Radio"],
+                        correct: 0,
+                        explanation: "El fémur es el hueso más largo del cuerpo humano"
+                    },
+                    {
+                        question: "¿Qué gas necesitan las plantas para la fotosíntesis?",
+                        options: ["Oxígeno", "Nitrógeno", "Dióxido de carbono", "Hidrógeno"],
+                        correct: 2,
+                        explanation: "Las plantas necesitan dióxido de carbono para la fotosíntesis"
+                    },
+                    {
+                        question: "¿Cuántos cromosomas tiene el ser humano normalmente?",
+                        options: ["23", "46", "64", "32"],
+                        correct: 1,
+                        explanation: "Los seres humanos tienen normalmente 46 cromosomas"
+                    },
+                    
+                    // Arte y Literatura (6 preguntas)
+                    {
+                        question: "¿Quién escribió 'Don Quijote de la Mancha'?",
+                        options: ["Miguel de Cervantes", "Federico García Lorca", "Gabriel García Márquez", "Pablo Neruda"],
+                        correct: 0,
+                        explanation: "Miguel de Cervantes escribió 'Don Quijote de la Mancha'"
+                    },
+                    {
+                        question: "¿Qué compositor escribió la 'Quinta Sinfonía'?",
+                        options: ["Mozart", "Beethoven", "Bach", "Chopin"],
+                        correct: 1,
+                        explanation: "Beethoven compuso la 'Quinta Sinfonía'"
+                    },
+                    {
+                        question: "¿Quién pintó 'La noche estrellada'?",
+                        options: ["Pablo Picasso", "Vincent van Gogh", "Claude Monet", "Salvador Dalí"],
+                        correct: 1,
+                        explanation: "Vincent van Gogh pintó 'La noche estrellada'"
+                    },
+                    {
+                        question: "¿Qué autor escribió 'Cien años de soledad'?",
+                        options: ["Mario Vargas Llosa", "Julio Cortázar", "Gabriel García Márquez", "Jorge Luis Borges"],
+                        correct: 2,
+                        explanation: "Gabriel García Márquez escribió 'Cien años de soledad'"
+                    },
+                    {
+                        question: "¿En qué ciudad se encuentra la obra 'El David' de Miguel Ángel?",
+                        options: ["Roma", "Venecia", "Florencia", "Milán"],
+                        correct: 2,
+                        explanation: "'El David' de Miguel Ángel se encuentra en Florencia, Italia"
+                    },
+                    {
+                        question: "¿Quién escribió 'Romeo y Julieta'?",
+                        options: ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
+                        correct: 0,
+                        explanation: "William Shakespeare escribió 'Romeo y Julieta'"
+                    },
+                    
+                    // Deportes (6 preguntas)
+                    {
+                        question: "¿Cuántos jugadores hay en un equipo de fútbol en el campo?",
+                        options: ["10", "11", "12", "9"],
+                        correct: 1,
+                        explanation: "Un equipo de fútbol tiene 11 jugadores en el campo"
+                    },
+                    {
+                        question: "¿En qué deporte se usa una raqueta y una pelota amarilla?",
+                        options: ["Bádminton", "Tenis", "Squash", "Ping pong"],
+                        correct: 1,
+                        explanation: "En tenis se usa raqueta y pelota amarilla"
+                    },
+                    {
+                        question: "¿Qué país ganó la Copa del Mundo de Fútbol 2022?",
+                        options: ["Francia", "Argentina", "Brasil", "Alemania"],
+                        correct: 1,
+                        explanation: "Argentina ganó la Copa del Mundo 2022"
+                    },
+                    {
+                        question: "¿Cuántos anillos hay en el logo de los Juegos Olímpicos?",
+                        options: ["4", "5", "6", "7"],
+                        correct: 1,
+                        explanation: "El logo olímpico tiene 5 anillos entrelazados"
+                    },
+                    {
+                        question: "¿En qué deporte se usa un bate y un guante?",
+                        options: ["Críquet", "Béisbol", "Hockey", "Rugby"],
+                        correct: 1,
+                        explanation: "En béisbol se usa bate y guante"
+                    },
+                    {
+                        question: "¿Qué nadador tiene más medallas olímpicas?",
+                        options: ["Mark Spitz", "Michael Phelps", "Ian Thorpe", "Ryan Lochte"],
+                        correct: 1,
+                        explanation: "Michael Phelps tiene 28 medallas olímpicas"
                     }
                 ];
                 
@@ -1156,6 +1344,7 @@
                     displayTeam1Score: document.getElementById('displayTeam1Score'),
                     displayTeam2Score: document.getElementById('displayTeam2Score'),
                     turnIndicator: document.getElementById('turnIndicator'),
+                    timer: document.getElementById('timer'),
                     questionText: document.getElementById('questionText'),
                     optionsGrid: document.getElementById('optionsGrid'),
                     feedback: document.getElementById('feedback'),
@@ -1186,14 +1375,29 @@
                     this.teams.team2.name = e.target.value.toUpperCase() || "EQUIPO AZUL";
                 });
                 
-                this.shuffleQuestions();
+                this.assignQuestionsRandomly();
             }
             
-            shuffleQuestions() {
-                for (let i = this.questions.length - 1; i > 0; i--) {
+            assignQuestionsRandomly() {
+                // Reset assignments
+                this.teams.team1.questionsAssigned = [];
+                this.teams.team2.questionsAssigned = [];
+                
+                // Create array of all question indices
+                let allIndices = Array.from({length: this.questions.length}, (_, i) => i);
+                
+                // Shuffle indices
+                for (let i = allIndices.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
-                    [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
+                    [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
                 }
+                
+                // Assign 5 questions to each team
+                this.teams.team1.questionsAssigned = allIndices.slice(0, this.questionsPerTeam);
+                this.teams.team2.questionsAssigned = allIndices.slice(this.questionsPerTeam, this.questionsPerTeam * 2);
+                
+                // Remaining questions are shared (20 preguntas)
+                this.sharedQuestions = allIndices.slice(this.questionsPerTeam * 2);
             }
             
             startGame() {
@@ -1202,8 +1406,10 @@
                 
                 this.teams.team1.score = 0;
                 this.teams.team2.score = 0;
-                this.currentTurn = 'team1';
-                this.currentQuestion = 0;
+                this.currentTurn = Math.random() < 0.5 ? 'team1' : 'team2';
+                this.currentQuestionIndex = 0;
+                this.questionsAnswered = 0;
+                this.assignQuestionsRandomly();
                 
                 this.updateDisplays();
                 
@@ -1215,12 +1421,29 @@
             }
             
             showQuestion() {
-                if (this.currentQuestion >= this.totalQuestions) {
+                if (this.questionsAnswered >= this.totalQuestions) {
                     this.endGame();
                     return;
                 }
                 
-                const question = this.questions[this.currentQuestion];
+                this.stopTimer();
+                this.timeLeft = this.timeLimit;
+                this.updateTimerDisplay();
+                
+                // Seleccionar pregunta
+                let questionIndex;
+                const currentTeam = this.teams[this.currentTurn];
+                
+                if (currentTeam.questionsAssigned.length > 0) {
+                    // Usar una pregunta asignada específicamente a este equipo
+                    questionIndex = currentTeam.questionsAssigned.shift();
+                } else {
+                    // Usar pregunta compartida
+                    const randomIndex = Math.floor(Math.random() * this.sharedQuestions.length);
+                    questionIndex = this.sharedQuestions.splice(randomIndex, 1)[0];
+                }
+                
+                const question = this.questions[questionIndex];
                 this.elements.questionText.textContent = question.question;
                 this.elements.optionsGrid.innerHTML = '';
                 
@@ -1231,21 +1454,91 @@
                         <div class="option-number">${String.fromCharCode(65 + index)}</div>
                         <div>${option}</div>
                     `;
-                    optionElement.addEventListener('click', () => this.selectOption(index));
+                    optionElement.addEventListener('click', () => this.selectOption(index, questionIndex));
                     this.elements.optionsGrid.appendChild(optionElement);
                 });
                 
                 this.elements.feedback.style.display = 'none';
                 this.elements.nextBtn.disabled = true;
                 this.elements.passTurnBtn.disabled = false;
+                
+                // Iniciar temporizador
+                this.startTimer(questionIndex);
             }
             
-            selectOption(selectedIndex) {
-                const question = this.questions[this.currentQuestion];
+            startTimer(questionIndex) {
+                this.stopTimer();
+                
+                this.timer = setInterval(() => {
+                    this.timeLeft--;
+                    this.updateTimerDisplay();
+                    
+                    if (this.timeLeft <= 0) {
+                        this.handleTimeout(questionIndex);
+                    }
+                }, 1000);
+            }
+            
+            stopTimer() {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                }
+            }
+            
+            updateTimerDisplay() {
+                this.elements.timer.textContent = `${this.timeLeft}s`;
+                this.elements.timer.className = 'timer';
+                
+                if (this.timeLeft <= 3) {
+                    this.elements.timer.classList.add('critical');
+                } else if (this.timeLeft <= 5) {
+                    this.elements.timer.classList.add('warning');
+                }
+            }
+            
+            handleTimeout(questionIndex) {
+                this.stopTimer();
+                const currentTeam = this.teams[this.currentTurn];
+                const options = document.querySelectorAll('.option');
+                const question = this.questions[questionIndex];
+                
+                // Deshabilitar todas las opciones
+                options.forEach(option => {
+                    option.classList.add('disabled');
+                });
+                
+                // Mostrar respuesta correcta
+                options[question.correct].classList.add('correct');
+                
+                // Pérdida de puntos por tiempo
+                currentTeam.score -= 5;
+                
+                this.elements.feedback.className = 'feedback timeout';
+                this.elements.feedbackHeader.textContent = `⏰ ¡TIEMPO AGOTADO!`;
+                this.elements.feedbackText.textContent = `La respuesta correcta era: ${question.options[question.correct]}`;
+                this.elements.pointsEarned.textContent = `-5 puntos por tiempo`;
+                this.elements.feedback.style.display = 'block';
+                
+                this.updateDisplays();
+                this.elements.nextBtn.disabled = false;
+                this.elements.passTurnBtn.disabled = true;
+                
+                this.questionsAnswered++;
+            }
+            
+            selectOption(selectedIndex, questionIndex) {
+                this.stopTimer();
+                const question = this.questions[questionIndex];
                 const options = document.querySelectorAll('.option');
                 const currentTeam = this.teams[this.currentTurn];
                 
                 this.elements.passTurnBtn.disabled = true;
+                
+                // Deshabilitar todas las opciones
+                options.forEach(option => {
+                    option.classList.add('disabled');
+                });
                 
                 // Mostrar respuesta correcta
                 options[question.correct].classList.add('correct');
@@ -1254,35 +1547,37 @@
                     currentTeam.score += 10;
                     this.elements.feedback.className = 'feedback correct';
                     this.elements.feedbackHeader.textContent = `✅ ¡${currentTeam.name} SABE!`;
+                    this.elements.feedbackText.textContent = question.explanation;
                     this.elements.pointsEarned.textContent = `+10 puntos`;
                 } else {
                     currentTeam.score -= 5;
                     options[selectedIndex].classList.add('incorrect');
                     this.elements.feedback.className = 'feedback incorrect';
                     this.elements.feedbackHeader.textContent = `❌ ¡${currentTeam.name} NO SABE!`;
+                    this.elements.feedbackText.textContent = `${question.explanation}. La respuesta correcta era: ${question.options[question.correct]}`;
                     this.elements.pointsEarned.textContent = `-5 puntos`;
                 }
                 
-                this.elements.feedbackText.textContent = this.questions[this.currentQuestion].explanation;
                 this.elements.feedback.style.display = 'block';
                 
                 this.updateDisplays();
                 this.elements.nextBtn.disabled = false;
+                
+                this.questionsAnswered++;
             }
             
             passTurn() {
+                this.stopTimer();
                 this.currentTurn = this.currentTurn === 'team1' ? 'team2' : 'team1';
                 this.updateTurnDisplay();
                 
                 setTimeout(() => {
-                    this.currentQuestion++;
                     this.showQuestion();
                 }, 500);
             }
             
             nextQuestion() {
                 this.currentTurn = this.currentTurn === 'team1' ? 'team2' : 'team1';
-                this.currentQuestion++;
                 this.updateTurnDisplay();
                 this.showQuestion();
             }
@@ -1306,6 +1601,7 @@
             }
             
             endGame() {
+                this.stopTimer();
                 this.elements.gameScreen.style.display = 'none';
                 this.elements.resultScreen.style.display = 'flex';
                 
@@ -1321,15 +1617,15 @@
                 if (this.teams.team1.score > this.teams.team2.score) {
                     winnerText = `🏆 ${this.teams.team1.name} GANA 🏆`;
                     winnerClass = "winner-team1";
-                    this.elements.winnerMessage.textContent = `¡Victoria por ${diff} puntos!`;
+                    this.elements.winnerMessage.textContent = `¡Victoria por ${diff} puntos! Respondieron ${this.questionsPerTeam} preguntas exclusivas cada equipo`;
                 } else if (this.teams.team2.score > this.teams.team1.score) {
                     winnerText = `🏆 ${this.teams.team2.name} GANA 🏆`;
                     winnerClass = "winner-team2";
-                    this.elements.winnerMessage.textContent = `¡Victoria por ${diff} puntos!`;
+                    this.elements.winnerMessage.textContent = `¡Victoria por ${diff} puntos! Respondieron ${this.questionsPerTeam} preguntas exclusivas cada equipo`;
                 } else {
                     winnerText = "🤝 ¡EMPATE! 🤝";
                     winnerClass = "winner-draw";
-                    this.elements.winnerMessage.textContent = "¡Increíble igualdad!";
+                    this.elements.winnerMessage.textContent = `¡Increíble igualdad! Ambos equipos respondieron ${this.questionsPerTeam} preguntas exclusivas`;
                 }
                 
                 this.elements.winnerAnnouncement.textContent = winnerText;
@@ -1337,12 +1633,13 @@
             }
             
             playAgain() {
+                this.stopTimer();
                 this.teams.team1.score = 0;
                 this.teams.team2.score = 0;
-                this.currentTurn = 'team1';
-                this.currentQuestion = 0;
+                this.questionsAnswered = 0;
+                this.currentTurn = Math.random() < 0.5 ? 'team1' : 'team2';
                 
-                this.shuffleQuestions();
+                this.assignQuestionsRandomly();
                 this.updateDisplays();
                 
                 this.elements.resultScreen.style.display = 'none';
@@ -1351,6 +1648,7 @@
             }
             
             newTeams() {
+                this.stopTimer();
                 this.elements.resultScreen.style.display = 'none';
                 this.elements.setupScreen.style.display = 'flex';
                 
@@ -1361,8 +1659,9 @@
                 this.teams.team2.name = "EQUIPO AZUL";
                 this.teams.team1.score = 0;
                 this.teams.team2.score = 0;
+                this.questionsAnswered = 0;
                 
-                this.shuffleQuestions();
+                this.assignQuestionsRandomly();
                 this.updateDisplays();
             }
         }
