@@ -21,8 +21,6 @@
             --gris-oscuro: #333333;
             --verde: #4CAF50;
             --rojo: #F44336;
-            --naranja: #FF9800;
-            --amarillo: #FFC107;
         }
 
         body {
@@ -31,777 +29,437 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 800px;
             background: var(--blanco);
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            animation: slideIn 0.6s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .header {
             background: linear-gradient(90deg, var(--vino-tinto), var(--azul-marino));
-            padding: 25px;
+            padding: 20px;
             text-align: center;
             color: var(--blanco);
             position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: "🌍💼📊🤝";
-            position: absolute;
-            font-size: 80px;
-            opacity: 0.1;
-            top: 10px;
-            left: 0;
-            width: 100%;
-            text-align: center;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .tagline {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         .game-container {
-            padding: 30px;
-            min-height: 650px;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
+            min-height: 500px;
         }
 
         .screen {
-            flex: 1;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
-        /* Pantalla de Configuración MEJORADA */
+        /* Pantalla de Configuración Compacta */
         .setup-screen {
-            text-align: center;
+            gap: 15px;
         }
 
         .teams-setup {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
+            gap: 15px;
+            margin: 15px 0;
         }
 
         .team-card {
             flex: 1;
-            max-width: 400px;
-            padding: 30px;
-            border-radius: 20px;
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .team1 {
-            background: linear-gradient(145deg, var(--melon), #FFB6A0);
+            background: var(--melon);
             color: var(--vino-tinto);
-            border: 4px solid var(--vino-tinto);
+            border: 2px solid var(--vino-tinto);
         }
 
         .team2 {
-            background: linear-gradient(145deg, #4D8BFF, var(--azul-marino));
+            background: var(--azul-marino);
             color: var(--blanco);
-            border: 4px solid var(--azul-marino);
+            border: 2px solid var(--azul-marino);
         }
 
         .team-emoji {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
         }
 
         .team-name {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
         .team-input {
             width: 100%;
-            padding: 15px;
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
-            font-size: 1.3rem;
+            padding: 8px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 5px;
+            font-size: 0.9rem;
             text-align: center;
-            margin: 20px 0;
-            background: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            color: var(--gris-oscuro);
-            transition: all 0.3s ease;
-        }
-
-        .team-input:focus {
-            outline: none;
-            border-color: var(--azul-marino);
-            box-shadow: 0 0 15px rgba(0, 51, 102, 0.3);
-            transform: scale(1.02);
+            margin: 5px 0;
+            background: rgba(255,255,255,0.9);
         }
 
         .team-score {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-top: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 5px;
         }
 
-        /* Reglas MEJORADAS */
         .rules {
-            background: linear-gradient(135deg, var(--gris-claro), #e8e8e8);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border-left: 6px solid var(--vino-tinto);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: var(--gris-claro);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--vino-tinto);
         }
 
-        .rules h3 {
-            color: var(--vino-tinto);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+        .rules-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .rule-item {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 5px;
         }
 
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .rule-card {
-            background: var(--blanco);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .rule-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .rule-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .rule-text {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--gris-oscuro);
-        }
-
-        /* Marcador MEJORADO */
+        /* Marcador Compacto */
         .score-board {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px;
+            padding: 15px;
             background: linear-gradient(90deg, var(--vino-tinto), var(--azul-marino));
             color: var(--blanco);
-            border-radius: 20px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .score-board::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .team-display {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            position: relative;
-            z-index: 1;
+            gap: 5px;
         }
 
         .team-name-display {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .team-score-display {
-            font-size: 4rem;
-            font-weight: 900;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            font-size: 1.8rem;
+            font-weight: bold;
         }
 
         .vs {
-            font-size: 3rem;
-            font-weight: 900;
+            font-size: 1.2rem;
+            font-weight: bold;
             background: var(--blanco);
             color: var(--azul-marino);
-            padding: 20px 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            animation: pulse 2s infinite;
+            padding: 8px 15px;
+            border-radius: 8px;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Control de Turno MEJORADO */
+        /* Control de Turno Compacto */
         .turn-controls {
-            background: linear-gradient(135deg, #f0f7ff, #e0eeff);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 25px 0;
+            background: var(--gris-claro);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
             text-align: center;
-            border: 5px solid var(--azul-marino);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid var(--azul-marino);
         }
 
         .current-turn {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--azul-marino);
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--gris-oscuro);
         }
 
         .turn-indicator {
             display: inline-block;
-            padding: 15px 50px;
-            border-radius: 40px;
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 20px rgba(0,0,0,0.2); }
-            to { box-shadow: 0 0 30px rgba(0,0,0,0.4); }
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .turn-team1 {
-            background: linear-gradient(90deg, var(--melon), #FF6B6B);
+            background: var(--melon);
             color: var(--vino-tinto);
         }
 
         .turn-team2 {
-            background: linear-gradient(90deg, #66A3FF, var(--azul-marino));
+            background: var(--azul-marino);
             color: var(--blanco);
         }
 
-        /* Pregunta MEJORADA */
+        /* Pregunta Compacta */
         .question-card {
             background: linear-gradient(135deg, var(--vino-tinto), var(--azul-marino));
             color: var(--blanco);
-            padding: 35px;
-            border-radius: 25px;
-            margin: 25px 0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            min-height: 180px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .question-card::before {
-            content: "?";
-            position: absolute;
-            font-size: 300px;
-            opacity: 0.05;
-            right: -50px;
-            top: -80px;
-            font-weight: 900;
         }
 
         .question-category {
-            font-size: 1.1rem;
-            background: rgba(255,255,255,0.25);
-            padding: 8px 20px;
-            border-radius: 25px;
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 12px;
             display: inline-block;
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
 
         .question-text {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.4;
         }
 
-        /* Opciones MEJORADAS (4 OPCIONES VISIBLES) */
+        /* Opciones Compactas */
         .options-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 15px 0;
         }
 
         .option {
             background: var(--blanco);
-            border: 4px solid #e0e0e0;
-            border-radius: 20px;
-            padding: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 1.2rem;
-            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            min-height: 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .option::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .option:hover::before {
-            left: 100%;
+            gap: 8px;
+            min-height: 60px;
         }
 
         .option:hover {
-            transform: translateY(-10px) scale(1.03);
             border-color: var(--azul-marino);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
         }
 
         .option.correct {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            background: #d4edda;
             border-color: var(--verde);
-            color: var(--blanco);
-            animation: correctAnswer 0.6s ease;
+            color: #155724;
         }
 
         .option.incorrect {
-            background: linear-gradient(135deg, #F44336, #C62828);
+            background: #f8d7da;
             border-color: var(--rojo);
-            color: var(--blanco);
-            animation: incorrectAnswer 0.6s ease;
-        }
-
-        @keyframes correctAnswer {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes incorrectAnswer {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+            color: #721c24;
         }
 
         .option-number {
-            background: linear-gradient(135deg, var(--azul-marino), var(--vino-tinto));
+            background: var(--azul-marino);
             color: var(--blanco);
-            width: 50px;
-            height: 50px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 1.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
             flex-shrink: 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .option-text {
-            flex: 1;
-            font-size: 1.2rem;
-            line-height: 1.4;
-        }
-
-        /* Feedback MEJORADO */
+        /* Feedback Compacto */
         .feedback {
-            padding: 30px;
-            border-radius: 25px;
-            margin: 25px 0;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
             display: none;
-            animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .feedback.correct {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            border: 4px solid #2E7D32;
-            color: var(--blanco);
+            background: #d4edda;
+            border: 2px solid var(--verde);
+            color: #155724;
         }
 
         .feedback.incorrect {
-            background: linear-gradient(135deg, #F44336, #C62828);
-            border: 4px solid #C62828;
-            color: var(--blanco);
+            background: #f8d7da;
+            border: 2px solid var(--rojo);
+            color: #721c24;
         }
 
         .feedback-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .feedback-text {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1rem;
         }
 
         .points-earned {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-top: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 0.9rem;
         }
 
-        /* Botones MEJORADOS */
+        /* Botones Compactos */
         .btn {
-            padding: 20px 45px;
-            font-size: 1.3rem;
-            font-weight: 700;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
             border: none;
-            border-radius: 15px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
+            transition: all 0.2s;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            margin: 10px;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            gap: 8px;
         }
 
         .btn-primary {
             background: linear-gradient(90deg, var(--azul-marino), var(--vino-tinto));
             color: var(--blanco);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .btn-primary:active {
-            transform: translateY(-4px) scale(1.02);
+            transform: translateY(-2px);
         }
 
         .btn-large {
-            padding: 25px 60px;
-            font-size: 1.8rem;
-            margin: 40px auto;
-            border-radius: 20px;
+            padding: 12px 30px;
+            margin: 15px auto;
+            display: block;
         }
 
         .btn-team1 {
-            background: linear-gradient(90deg, var(--melon), #FF6B6B);
+            background: var(--melon);
             color: var(--vino-tinto);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .btn-team2 {
-            background: linear-gradient(90deg, #66A3FF, var(--azul-marino));
+            background: var(--azul-marino);
             color: var(--blanco);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .controls {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
-            gap: 25px;
+            margin-top: 15px;
+            gap: 10px;
         }
 
-        /* Resultados MEJORADOS */
+        /* Resultados Compactos */
         .result-container {
             text-align: center;
-            padding: 50px;
-            animation: celebrate 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes celebrate {
-            0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
-            70% { transform: scale(1.1) rotate(5deg); }
-            100% { transform: scale(1) rotate(0); opacity: 1; }
+            padding: 20px;
         }
 
         .winner-announcement {
-            font-size: 4rem;
-            margin: 40px 0;
-            padding: 30px;
-            border-radius: 30px;
-            animation: bounce 2s infinite ease-in-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
+            font-size: 1.5rem;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 10px;
         }
 
         .winner-team1 {
-            background: linear-gradient(90deg, var(--melon), #FF6B6B);
+            background: var(--melon);
             color: var(--vino-tinto);
-            box-shadow: 0 20px 50px rgba(255, 106, 107, 0.4);
         }
 
         .winner-team2 {
-            background: linear-gradient(90deg, #66A3FF, var(--azul-marino));
+            background: var(--azul-marino);
             color: var(--blanco);
-            box-shadow: 0 20px 50px rgba(102, 163, 255, 0.4);
         }
 
         .winner-draw {
             background: linear-gradient(90deg, var(--azul-marino), var(--vino-tinto));
             color: var(--blanco);
-            box-shadow: 0 20px 50px rgba(0, 51, 102, 0.4);
         }
 
         .result-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin: 50px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: transform 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px) scale(1.05);
+            background: var(--gris-claro);
+            padding: 12px;
+            border-radius: 8px;
         }
 
         .stat-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
             color: var(--gris-oscuro);
-            font-weight: 600;
         }
 
         .stat-card .value {
-            font-size: 3.5rem;
-            font-weight: 900;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .result-message {
-            font-size: 1.8rem;
+            font-size: 0.9rem;
             color: var(--gris-oscuro);
-            margin: 40px 0;
-            line-height: 1.6;
-            font-weight: 600;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 15px 0;
+            line-height: 1.4;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .rules-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             .container {
                 max-width: 95%;
             }
             
-            h1 {
-                font-size: 2.2rem;
-            }
-            
             .teams-setup {
                 flex-direction: column;
-                align-items: center;
-                gap: 30px;
-            }
-            
-            .team-card {
-                max-width: 100%;
-            }
-            
-            .rules-grid {
-                grid-template-columns: 1fr;
             }
             
             .options-grid {
                 grid-template-columns: 1fr;
             }
             
-            .result-stats {
-                grid-template-columns: repeat(2, 1fr);
+            .rules-content {
+                grid-template-columns: 1fr;
             }
             
             .controls {
                 flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .game-container {
-                padding: 20px;
-            }
-            
-            .header {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            .question-text {
-                font-size: 1.4rem;
-            }
-            
-            .result-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .winner-announcement {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Efectos extras */
-        .confetti {
-            position: fixed;
-            width: 15px;
-            height: 15px;
-            background: var(--melon);
-            opacity: 0;
-            animation: confettiFall 5s linear forwards;
-        }
-
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
             }
         }
     </style>
@@ -809,67 +467,45 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>⚔️ NEGOCIOS INTERNACIONALES ⚔️</h1>
-            <div class="tagline">¡Batalla épica de conocimientos entre equipos!</div>
+            <h1>⚔️ NEGOCIOS INTERNACIONALES</h1>
+            <div class="tagline">¡Batalla de conocimientos entre equipos!</div>
         </div>
 
         <div class="game-container">
-            <!-- Pantalla de Configuración MEJORADA -->
+            <!-- Pantalla de Configuración -->
             <div class="screen setup-screen" id="setupScreen">
                 <div class="teams-setup">
                     <div class="team-card team1">
                         <div class="team-emoji">🔥</div>
                         <div class="team-name">EQUIPO ROJO</div>
-                        <input type="text" class="team-input" id="team1Name" placeholder="Ingresa nombre del equipo" value="EQUIPO ROJO" maxlength="20">
-                        <div class="team-score" id="team1Score">0 PUNTOS</div>
+                        <input type="text" class="team-input" id="team1Name" placeholder="Nombre equipo" value="EQUIPO ROJO" maxlength="15">
+                        <div class="team-score" id="team1Score">0 pts</div>
                     </div>
                     
                     <div class="team-card team2">
                         <div class="team-emoji">💧</div>
                         <div class="team-name">EQUIPO AZUL</div>
-                        <input type="text" class="team-input" id="team2Name" placeholder="Ingresa nombre del equipo" value="EQUIPO AZUL" maxlength="20">
-                        <div class="team-score" id="team2Score">0 PUNTOS</div>
+                        <input type="text" class="team-input" id="team2Name" placeholder="Nombre equipo" value="EQUIPO AZUL" maxlength="15">
+                        <div class="team-score" id="team2Score">0 pts</div>
                     </div>
                 </div>
 
                 <div class="rules">
-                    <h3>🎮 REGLAS DEL JUEGO</h3>
-                    <div class="rules-grid">
-                        <div class="rule-card">
-                            <div class="rule-icon">⚔️</div>
-                            <div class="rule-text">2 equipos compiten</div>
-                        </div>
-                        <div class="rule-card">
-                            <div class="rule-icon">✅</div>
-                            <div class="rule-text">+10 puntos por acierto</div>
-                        </div>
-                        <div class="rule-card">
-                            <div class="rule-icon">❌</div>
-                            <div class="rule-text">-5 puntos por error</div>
-                        </div>
-                        <div class="rule-card">
-                            <div class="rule-icon">🔄</div>
-                            <div class="rule-text">Turnos alternados</div>
-                        </div>
-                        <div class="rule-card">
-                            <div class="rule-icon">🎯</div>
-                            <div class="rule-text">15 preguntas</div>
-                        </div>
-                        <div class="rule-card">
-                            <div class="rule-icon">🏆</div>
-                            <div class="rule-text">¡Gana el mejor!</div>
-                        </div>
+                    <div class="rules-content">
+                        <div class="rule-item">✅ +10 pts por acierto</div>
+                        <div class="rule-item">❌ -5 pts por error</div>
+                        <div class="rule-item">🔄 Turnos alternados</div>
+                        <div class="rule-item">🎯 15 preguntas</div>
                     </div>
                 </div>
 
                 <button class="btn btn-primary btn-large" id="startGameBtn">
-                    🚀 INICIAR BATALLA
+                    🚀 INICIAR JUEGO
                 </button>
             </div>
 
-            <!-- Pantalla de Juego MEJORADA -->
+            <!-- Pantalla de Juego -->
             <div class="screen" id="gameScreen" style="display: none;">
-                <!-- Marcador de Puntos MEJORADO -->
                 <div class="score-board">
                     <div class="team-display">
                         <div class="team-name-display" id="displayTeam1Name">EQUIPO ROJO</div>
@@ -884,42 +520,35 @@
                     </div>
                 </div>
 
-                <!-- Control de Turno MEJORADO -->
                 <div class="turn-controls">
                     <div class="current-turn">TURNO ACTUAL:</div>
                     <div class="turn-indicator turn-team1" id="turnIndicator">EQUIPO ROJO</div>
                 </div>
 
-                <!-- Pregunta Actual MEJORADA -->
                 <div class="question-card">
                     <div class="question-category" id="questionCategory">NEGOCIOS INTERNACIONALES</div>
                     <div class="question-text" id="questionText"></div>
                 </div>
 
-                <!-- Opciones MEJORADAS (AHORA SÍ 4 OPCIONES) -->
-                <div class="options-grid" id="optionsGrid">
-                    <!-- Las 4 opciones se generan dinámicamente -->
-                </div>
+                <div class="options-grid" id="optionsGrid"></div>
 
-                <!-- Feedback MEJORADO -->
                 <div class="feedback" id="feedback">
                     <div class="feedback-header" id="feedbackHeader"></div>
-                    <div class="feedback-text" id="feedbackText"></div>
+                    <div id="feedbackText"></div>
                     <div class="points-earned" id="pointsEarned"></div>
                 </div>
 
-                <!-- Controles MEJORADOS -->
                 <div class="controls">
                     <button class="btn btn-team1" id="passTurnBtn">
-                        ⏭️ PASAR TURNO
+                        ⏭️ PASAR
                     </button>
                     <button class="btn btn-primary" id="nextBtn" disabled>
-                        ▶ SIGUIENTE PREGUNTA
+                        ▶ SIGUIENTE
                     </button>
                 </div>
             </div>
 
-            <!-- Pantalla de Resultados MEJORADA -->
+            <!-- Pantalla de Resultados -->
             <div class="screen" id="resultScreen" style="display: none;">
                 <div class="result-container">
                     <div class="winner-announcement" id="winnerAnnouncement">
@@ -927,35 +556,25 @@
                     </div>
                     
                     <div class="result-stats">
-                        <div class="stat-card" style="border: 5px solid var(--melon);">
+                        <div class="stat-card">
                             <h3 id="resultTeam1Name">EQUIPO ROJO</h3>
                             <div class="value" style="color: var(--vino-tinto);" id="resultTeam1Score">0</div>
                         </div>
                         
-                        <div class="stat-card" style="border: 5px solid var(--azul-marino);">
+                        <div class="stat-card">
                             <h3 id="resultTeam2Name">EQUIPO AZUL</h3>
                             <div class="value" style="color: var(--azul-marino);" id="resultTeam2Score">0</div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <h3>PREGUNTAS TOTAL</h3>
-                            <div class="value" style="color: var(--azul-marino);">15</div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <h3>DIFERENCIA</h3>
-                            <div class="value" style="color: var(--vino-tinto);" id="scoreDifference">0</div>
                         </div>
                     </div>
 
                     <div class="result-message" id="winnerMessage"></div>
 
-                    <div class="controls" style="justify-content: center;">
-                        <button class="btn btn-primary btn-large" id="playAgainBtn">
-                            🔄 JUGAR DE NUEVO
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button class="btn btn-primary" id="playAgainBtn">
+                            🔄 REVANCHA
                         </button>
                         <button class="btn btn-team2" id="newTeamsBtn">
-                            🆕 NUEVOS EQUIPOS
+                            🆕 NUEVO
                         </button>
                     </div>
                 </div>
@@ -967,121 +586,105 @@
         class SabesVsSabesGame {
             constructor() {
                 this.teams = {
-                    team1: { name: "EQUIPO ROJO", score: 0, color: "#FF9A8B", emoji: "🔥" },
-                    team2: { name: "EQUIPO AZUL", score: 0, color: "#003366", emoji: "💧" }
+                    team1: { name: "EQUIPO ROJO", score: 0 },
+                    team2: { name: "EQUIPO AZUL", score: 0 }
                 };
                 
                 this.currentTurn = 'team1';
                 this.currentQuestion = 0;
                 this.totalQuestions = 15;
-                this.gameActive = false;
                 
-                // Preguntas EXCLUSIVAS de Negocios Internacionales (15 preguntas)
+                // Preguntas de Negocios Internacionales
                 this.questions = [
                     {
-                        question: "¿Qué significa la sigla 'FOB' en comercio internacional?",
-                        options: ["Free On Board (Libre a Bordo)", "Freight On Board (Flete a Bordo)", "Free Of Bond (Libre de Garantía)", "Foreign Office Bill (Factura de Oficina Extranjera)"],
+                        question: "¿Qué significa 'FOB' en comercio?",
+                        options: ["Free On Board", "Freight On Board", "Free Of Bond", "Foreign Office Bill"],
                         correct: 0,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ FOB significa 'Free On Board' (Libre a Bordo). El vendedor cubre costos hasta que la mercancía está a bordo del transporte."
+                        explanation: "FOB = Free On Board (Libre a Bordo)"
                     },
                     {
-                        question: "¿Qué es un 'arancel' en comercio internacional?",
-                        options: ["Un subsidio a las exportaciones", "Un impuesto sobre importaciones", "Un acuerdo comercial bilateral", "Una barrera técnica al comercio"],
+                        question: "¿Qué es un 'arancel'?",
+                        options: ["Subsidio", "Impuesto a importaciones", "Acuerdo comercial", "Barrera técnica"],
                         correct: 1,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ Un arancel es un impuesto que los gobiernos aplican a bienes importados para proteger la industria local."
+                        explanation: "Impuesto sobre bienes importados"
                     },
                     {
-                        question: "La 'balanza comercial' de un país mide:",
-                        options: ["El tipo de cambio de su moneda", "La diferencia entre exportaciones e importaciones", "Las reservas internacionales disponibles", "El nivel de inflación anual"],
+                        question: "La 'balanza comercial' mide:",
+                        options: ["Tipo de cambio", "Exportaciones - Importaciones", "Reservas", "Inflación"],
                         correct: 1,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ La balanza comercial mide la diferencia entre el valor de las exportaciones y las importaciones."
+                        explanation: "Diferencia entre exportaciones e importaciones"
                     },
                     {
-                        question: "¿Qué organización internacional regula el comercio mundial?",
-                        options: ["Organización de las Naciones Unidas (ONU)", "Fondo Monetario Internacional (FMI)", "Organización Mundial del Comercio (OMC)", "Organización para la Educación, la Ciencia y la Cultura (UNESCO)"],
+                        question: "¿Qué organización regula el comercio?",
+                        options: ["ONU", "FMI", "OMC", "UNESCO"],
                         correct: 2,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ La OMC (Organización Mundial del Comercio) establece las reglas del comercio internacional entre países."
+                        explanation: "OMC = Organización Mundial del Comercio"
                     },
                     {
-                        question: "¿Qué significa 'exportación'?",
-                        options: ["Comprar productos extranjeros para uso interno", "Vender productos o servicios a otros países", "Producir bienes exclusivamente para consumo local", "Importar materia prima para transformación"],
+                        question: "¿Qué es 'exportación'?",
+                        options: ["Comprar extranjero", "Vender a otros países", "Producción local", "Importar materia prima"],
                         correct: 1,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ Exportar es vender productos o servicios de un país a otros países."
+                        explanation: "Vender productos a otros países"
                     },
                     {
-                        question: "¿Qué es el 'dumping' en comercio internacional?",
-                        options: ["Vender productos por debajo del costo de producción", "Comprar en grandes cantidades para obtener descuento", "Exportar productos prohibidos internacionalmente", "Importar sin pagar los impuestos correspondientes"],
+                        question: "¿Qué es 'dumping'?",
+                        options: ["Vender bajo costo", "Comprar en cantidad", "Exportar prohibido", "Importar sin pagar"],
                         correct: 0,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ El dumping es vender productos en el extranjero a precios inferiores a su costo de producción o a los precios del mercado doméstico."
+                        explanation: "Vender por debajo del costo"
                     },
                     {
-                        question: "¿Qué significa 'IVA' en términos comerciales?",
-                        options: ["Impuesto al Valor Agregado", "Importe por Venta Autorizada", "Impuesto de Ventas Anual", "Importación de Valor Agregado"],
+                        question: "¿Qué significa 'IVA'?",
+                        options: ["Impuesto al Valor Agregado", "Importe Venta Autorizada", "Impuesto Ventas Anual", "Importación Valor"],
                         correct: 0,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ El IVA (Impuesto al Valor Agregado) es un impuesto indirecto que grava el consumo de bienes y servicios."
+                        explanation: "Impuesto al Valor Agregado"
                     },
                     {
-                        question: "¿Qué es una 'carta de crédito' en comercio internacional?",
-                        options: ["Contrato de compraventa internacional", "Documento de embarque marítimo", "Garantía bancaria de pago al exportador", "Certificado de origen de las mercancías"],
+                        question: "¿Qué es 'carta de crédito'?",
+                        options: ["Contrato", "Documento embarque", "Garantía bancaria", "Certificado origen"],
                         correct: 2,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ Una carta de crédito es un documento bancario que garantiza el pago al exportador una vez cumplidos los términos del contrato."
+                        explanation: "Garantía bancaria de pago"
                     },
                     {
-                        question: "Los 'INCOTERMS' son:",
-                        options: ["Impuestos internacionales aplicables", "Términos comerciales internacionales estandarizados", "Contratos modelo para exportación", "Regulaciones aduaneras uniformes"],
+                        question: "¿Qué son 'INCOTERMS'?",
+                        options: ["Impuestos", "Términos comerciales", "Contratos", "Regulaciones"],
                         correct: 1,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ Los INCOTERMS (International Commercial Terms) son términos estandarizados que definen las responsabilidades entre compradores y vendedores."
+                        explanation: "Términos comerciales internacionales"
                     },
                     {
-                        question: "¿Qué significa la sigla 'OMC'?",
-                        options: ["Organización Mundial del Comercio", "Organización de Mercados Comunes", "Oficina Mundial de Comercio", "Organización de Mercados Competitivos"],
+                        question: "¿Qué significa 'OMC'?",
+                        options: ["Organización Mundial Comercio", "Organización Mercados", "Oficina Mundial", "Organización Competitiva"],
                         correct: 0,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ OMC significa Organización Mundial del Comercio, fundada en 1995 para regular el comercio internacional."
+                        explanation: "Organización Mundial del Comercio"
                     },
                     {
-                        question: "¿Qué es una 'zona franca'?",
-                        options: ["Área donde no se pagan impuestos de importación", "Mercado negro de productos extranjeros", "Zona de libre competencia entre empresas", "Área restringida para producción nacional"],
+                        question: "¿Qué es 'zona franca'?",
+                        options: ["Área sin impuestos", "Mercado negro", "Libre competencia", "Producción nacional"],
                         correct: 0,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ Una zona franca es un área geográfica donde las mercancías pueden entrar, almacenarse y procesarse sin pagar aranceles."
+                        explanation: "Área sin impuestos de importación"
                     },
                     {
-                        question: "¿Qué mide el 'PIB' de un país?",
-                        options: ["La población económicamente activa", "El valor total de bienes y servicios producidos", "El volumen total de exportaciones netas", "La deuda externa contraída"],
+                        question: "¿Qué mide el 'PIB'?",
+                        options: ["Población", "Valor producción", "Exportaciones", "Deuda"],
                         correct: 1,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ El PIB (Producto Interno Bruto) mide el valor monetario de todos los bienes y servicios finales producidos en un país durante un período."
+                        explanation: "Valor de bienes y servicios"
                     },
                     {
-                        question: "¿Qué es el 'proteccionismo' económico?",
-                        options: ["Política de libre comercio sin restricciones", "Protección de los derechos del consumidor", "Barreras al comercio internacional para proteger industrias locales", "Protección ambiental en acuerdos comerciales"],
+                        question: "¿Qué es 'proteccionismo'?",
+                        options: ["Libre comercio", "Protección consumidor", "Barreras al comercio", "Protección ambiental"],
                         correct: 2,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ El proteccionismo son políticas que restringen el comercio internacional para proteger la industria nacional de la competencia extranjera."
+                        explanation: "Barreras al comercio internacional"
                     },
                     {
-                        question: "¿Qué significa 'trato nacional' en comercio internacional?",
-                        options: ["Tratar igual a productos nacionales y extranjeros", "Dar preferencia a productos nacionales", "Otorgar exclusividad a empresas nacionales", "Proporcionar subsidios exclusivos a productores nacionales"],
+                        question: "¿Qué es 'trato nacional'?",
+                        options: ["Igualdad productos", "Preferencia nacional", "Exclusividad", "Subsidios"],
                         correct: 0,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ El trato nacional es un principio que obliga a tratar a los productos importados igual que a los productos nacionales."
+                        explanation: "Tratar igual productos nacionales y extranjeros"
                     },
                     {
-                        question: "¿Qué es un 'embargo' comercial?",
-                        options: ["Subsidio gubernamental a exportaciones", "Prohibición total de comercio con un país", "Acuerdo de libre comercio regional", "Reducción gradual de aranceles"],
+                        question: "¿Qué es 'embargo'?",
+                        options: ["Subsidio", "Prohibición comercio", "Acuerdo libre", "Reducción aranceles"],
                         correct: 1,
-                        category: "NEGOCIOS INTERNACIONALES",
-                        explanation: "✅ Un embargo comercial es una prohibición oficial del comercio con un país en particular, usualmente por razones políticas."
+                        explanation: "Prohibición total de comercio"
                     }
                 ];
                 
@@ -1091,14 +694,12 @@
                     gameScreen: document.getElementById('gameScreen'),
                     resultScreen: document.getElementById('resultScreen'),
                     
-                    // Configuración
                     team1Name: document.getElementById('team1Name'),
                     team2Name: document.getElementById('team2Name'),
                     team1Score: document.getElementById('team1Score'),
                     team2Score: document.getElementById('team2Score'),
                     startGameBtn: document.getElementById('startGameBtn'),
                     
-                    // Juego
                     displayTeam1Name: document.getElementById('displayTeam1Name'),
                     displayTeam2Name: document.getElementById('displayTeam2Name'),
                     displayTeam1Score: document.getElementById('displayTeam1Score'),
@@ -1114,13 +715,11 @@
                     passTurnBtn: document.getElementById('passTurnBtn'),
                     nextBtn: document.getElementById('nextBtn'),
                     
-                    // Resultados
                     winnerAnnouncement: document.getElementById('winnerAnnouncement'),
                     resultTeam1Name: document.getElementById('resultTeam1Name'),
                     resultTeam2Name: document.getElementById('resultTeam2Name'),
                     resultTeam1Score: document.getElementById('resultTeam1Score'),
                     resultTeam2Score: document.getElementById('resultTeam2Score'),
-                    scoreDifference: document.getElementById('scoreDifference'),
                     winnerMessage: document.getElementById('winnerMessage'),
                     playAgainBtn: document.getElementById('playAgainBtn'),
                     newTeamsBtn: document.getElementById('newTeamsBtn')
@@ -1130,30 +729,24 @@
             }
             
             init() {
-                // Event listeners
                 this.elements.startGameBtn.addEventListener('click', () => this.startGame());
                 this.elements.passTurnBtn.addEventListener('click', () => this.passTurn());
                 this.elements.nextBtn.addEventListener('click', () => this.nextQuestion());
                 this.elements.playAgainBtn.addEventListener('click', () => this.playAgain());
                 this.elements.newTeamsBtn.addEventListener('click', () => this.newTeams());
                 
-                // Actualizar nombres de equipos en tiempo real
                 this.elements.team1Name.addEventListener('input', (e) => {
                     this.teams.team1.name = e.target.value.toUpperCase() || "EQUIPO ROJO";
-                    this.elements.team1Score.textContent = `${this.teams.team1.score} PUNTOS`;
                 });
                 
                 this.elements.team2Name.addEventListener('input', (e) => {
                     this.teams.team2.name = e.target.value.toUpperCase() || "EQUIPO AZUL";
-                    this.elements.team2Score.textContent = `${this.teams.team2.score} PUNTOS`;
                 });
                 
-                // Mezclar preguntas al inicio
                 this.shuffleQuestions();
             }
             
             shuffleQuestions() {
-                // Mezclar aleatoriamente las preguntas
                 for (let i = this.questions.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
@@ -1161,27 +754,21 @@
             }
             
             startGame() {
-                // Actualizar nombres de equipos
                 this.teams.team1.name = this.elements.team1Name.value.toUpperCase() || "EQUIPO ROJO";
                 this.teams.team2.name = this.elements.team2Name.value.toUpperCase() || "EQUIPO AZUL";
                 
-                // Reiniciar puntuaciones
                 this.teams.team1.score = 0;
                 this.teams.team2.score = 0;
                 this.currentTurn = 'team1';
                 this.currentQuestion = 0;
-                this.gameActive = true;
                 
-                // Actualizar displays
                 this.updateScoreDisplays();
                 this.updateTurnDisplay();
                 
-                // Cambiar pantallas
                 this.elements.setupScreen.style.display = 'none';
                 this.elements.gameScreen.style.display = 'flex';
                 this.elements.resultScreen.style.display = 'none';
                 
-                // Mostrar primera pregunta
                 this.showQuestion();
             }
             
@@ -1193,14 +780,10 @@
                 
                 const question = this.questions[this.currentQuestion];
                 
-                // Actualizar pregunta
-                this.elements.questionCategory.textContent = question.category;
                 this.elements.questionText.textContent = question.question;
                 
-                // Limpiar opciones anteriores
                 this.elements.optionsGrid.innerHTML = '';
                 
-                // Crear nuevas opciones (AHORA SÍ 4 OPCIONES)
                 question.options.forEach((option, index) => {
                     const optionElement = document.createElement('div');
                     optionElement.className = 'option';
@@ -1214,12 +797,10 @@
                     this.elements.optionsGrid.appendChild(optionElement);
                 });
                 
-                // Ocultar feedback y deshabilitar controles
                 this.elements.feedback.style.display = 'none';
                 this.elements.nextBtn.disabled = true;
                 this.elements.passTurnBtn.disabled = false;
                 
-                // Habilitar opciones
                 const options = document.querySelectorAll('.option');
                 options.forEach(option => {
                     option.style.pointerEvents = 'auto';
@@ -1232,85 +813,59 @@
                 const options = document.querySelectorAll('.option');
                 const currentTeam = this.teams[this.currentTurn];
                 
-                // Deshabilitar todas las opciones
-                options.forEach(option => {
-                    option.style.pointerEvents = 'none';
-                });
+                options.forEach(option => option.style.pointerEvents = 'none');
                 
-                // Deshabilitar botón de pasar turno
                 this.elements.passTurnBtn.disabled = true;
                 
-                // Mostrar respuesta correcta
                 options[question.correct].classList.add('correct');
                 
-                // Verificar respuesta
                 if (selectedIndex === question.correct) {
-                    // Respuesta correcta
                     currentTeam.score += 10;
-                    
-                    // Mostrar feedback positivo
-                    this.showFeedback(true, `🎉 ¡${currentTeam.name} SABE!`, `✅ Respuesta correcta: ${question.explanation}`, `+10 puntos para ${currentTeam.name}`);
-                    
-                    // Animación de la opción seleccionada
+                    this.showFeedback(true, `✅ ¡${currentTeam.name} SABE!`, `+10 puntos`);
                     options[selectedIndex].classList.add('correct');
                 } else {
-                    // Respuesta incorrecta
                     currentTeam.score -= 5;
-                    
-                    // Mostrar feedback negativo
-                    this.showFeedback(false, `😅 ¡${currentTeam.name} NO SABE!`, `❌ Respuesta incorrecta: ${question.explanation}`, `-5 puntos para ${currentTeam.name}`);
-                    
-                    // Marcar opción incorrecta
+                    this.showFeedback(false, `❌ ¡${currentTeam.name} NO SABE!`, `-5 puntos`);
                     options[selectedIndex].classList.add('incorrect');
                 }
                 
-                // Actualizar displays
                 this.updateScoreDisplays();
-                
-                // Habilitar botón siguiente
                 this.elements.nextBtn.disabled = false;
             }
             
-            showFeedback(isCorrect, header, explanation, pointsText) {
+            showFeedback(isCorrect, header, pointsText) {
                 this.elements.feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
                 this.elements.feedbackHeader.textContent = header;
-                this.elements.feedbackText.textContent = explanation;
+                this.elements.feedbackText.textContent = this.questions[this.currentQuestion].explanation;
                 this.elements.pointsEarned.textContent = pointsText;
                 this.elements.feedback.style.display = 'block';
             }
             
             passTurn() {
-                // Cambiar turno sin penalización
                 this.currentTurn = this.currentTurn === 'team1' ? 'team2' : 'team1';
                 this.updateTurnDisplay();
                 
-                // Pasar a siguiente pregunta automáticamente después de 1 segundo
                 setTimeout(() => {
                     this.currentQuestion++;
                     this.showQuestion();
-                }, 1000);
+                }, 500);
             }
             
             nextQuestion() {
-                // Cambiar turno
                 this.currentTurn = this.currentTurn === 'team1' ? 'team2' : 'team1';
                 this.currentQuestion++;
-                
-                // Actualizar y mostrar siguiente pregunta
                 this.updateTurnDisplay();
                 this.showQuestion();
             }
             
             updateScoreDisplays() {
-                // Actualizar en pantalla de juego
                 this.elements.displayTeam1Name.textContent = this.teams.team1.name;
                 this.elements.displayTeam2Name.textContent = this.teams.team2.name;
                 this.elements.displayTeam1Score.textContent = this.teams.team1.score;
                 this.elements.displayTeam2Score.textContent = this.teams.team2.score;
                 
-                // Actualizar en pantalla de configuración
-                this.elements.team1Score.textContent = `${this.teams.team1.score} PUNTOS`;
-                this.elements.team2Score.textContent = `${this.teams.team2.score} PUNTOS`;
+                this.elements.team1Score.textContent = `${this.teams.team1.score} pts`;
+                this.elements.team2Score.textContent = `${this.teams.team2.score} pts`;
             }
             
             updateTurnDisplay() {
@@ -1320,113 +875,70 @@
             }
             
             endGame() {
-                this.gameActive = false;
-                
-                // Cambiar a pantalla de resultados
                 this.elements.gameScreen.style.display = 'none';
                 this.elements.resultScreen.style.display = 'flex';
                 
-                // Actualizar estadísticas
                 this.elements.resultTeam1Name.textContent = this.teams.team1.name;
                 this.elements.resultTeam2Name.textContent = this.teams.team2.name;
                 this.elements.resultTeam1Score.textContent = this.teams.team1.score;
                 this.elements.resultTeam2Score.textContent = this.teams.team2.score;
                 
-                // Determinar ganador
                 const diff = Math.abs(this.teams.team1.score - this.teams.team2.score);
-                this.elements.scoreDifference.textContent = diff;
                 
-                let winnerText = "";
-                let winnerClass = "";
-                let message = "";
+                let winnerText, winnerClass, message;
                 
                 if (this.teams.team1.score > this.teams.team2.score) {
-                    winnerText = `🏆 ${this.teams.team1.name} VICTORIOSO 🏆`;
+                    winnerText = `${this.teams.team1.name} GANA`;
                     winnerClass = "winner-team1";
-                    message = `¡Felicidades! ${this.teams.team1.name} ha demostrado un conocimiento superior en Negocios Internacionales. ¡Victoria con ${diff} puntos de diferencia!`;
+                    message = `¡Victoria por ${diff} puntos!`;
                 } else if (this.teams.team2.score > this.teams.team1.score) {
-                    winnerText = `🏆 ${this.teams.team2.name} TRIUNFADOR 🏆`;
+                    winnerText = `${this.teams.team2.name} GANA`;
                     winnerClass = "winner-team2";
-                    message = `¡Excelente trabajo! ${this.teams.team2.name} mostró un dominio impresionante de los conceptos comerciales internacionales. ¡Ganaron por ${diff} puntos!`;
+                    message = `¡Victoria por ${diff} puntos!`;
                 } else {
-                    winnerText = "🤝 ¡EMPATE TÉCNICO! 🤝";
+                    winnerText = "¡EMPATE!";
                     winnerClass = "winner-draw";
-                    message = "¡Increíble batalla! Ambos equipos demostraron el mismo nivel de conocimiento en Negocios Internacionales. ¡Una competencia histórica!";
+                    message = "¡Increíble igualdad!";
                 }
                 
                 this.elements.winnerAnnouncement.textContent = winnerText;
                 this.elements.winnerAnnouncement.className = `winner-announcement ${winnerClass}`;
                 this.elements.winnerMessage.textContent = message;
-                
-                // Crear confetti si hay un ganador claro
-                if (diff > 0) {
-                    this.createConfetti();
-                }
-            }
-            
-            createConfetti() {
-                const colors = [this.teams.team1.score > this.teams.team2.score ? '#FF9A8B' : '#003366', '#8B0000', '#4CAF50', '#FFC107'];
-                
-                for (let i = 0; i < 100; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.left = `${Math.random() * 100}%`;
-                    confetti.style.animationDelay = `${Math.random() * 5}s`;
-                    confetti.style.width = `${Math.random() * 20 + 10}px`;
-                    confetti.style.height = `${Math.random() * 20 + 10}px`;
-                    document.body.appendChild(confetti);
-                    
-                    // Remover después de la animación
-                    setTimeout(() => confetti.remove(), 5000);
-                }
             }
             
             playAgain() {
-                // Mantener nombres pero reiniciar puntuaciones
                 this.teams.team1.score = 0;
                 this.teams.team2.score = 0;
                 this.currentTurn = 'team1';
                 this.currentQuestion = 0;
                 
-                // Mezclar preguntas nuevamente
                 this.shuffleQuestions();
-                
-                // Actualizar displays
                 this.updateScoreDisplays();
                 this.updateTurnDisplay();
                 
-                // Volver a pantalla de juego
                 this.elements.resultScreen.style.display = 'none';
                 this.elements.gameScreen.style.display = 'flex';
-                
-                // Mostrar primera pregunta
                 this.showQuestion();
             }
             
             newTeams() {
-                // Volver a pantalla de configuración
                 this.elements.resultScreen.style.display = 'none';
                 this.elements.setupScreen.style.display = 'flex';
                 
-                // Resetear nombres predeterminados
                 this.elements.team1Name.value = "EQUIPO ROJO";
                 this.elements.team2Name.value = "EQUIPO AZUL";
                 
-                // Resetear equipos
                 this.teams.team1.name = "EQUIPO ROJO";
                 this.teams.team2.name = "EQUIPO AZUL";
                 this.teams.team1.score = 0;
                 this.teams.team2.score = 0;
                 
-                // Mezclar preguntas nuevamente
                 this.shuffleQuestions();
             }
         }
         
-        // Inicializar el juego cuando la página cargue
         document.addEventListener('DOMContentLoaded', () => {
-            const game = new SabesVsSabesGame();
+            new SabesVsSabesGame();
         });
     </script>
 </body>
